@@ -3,12 +3,13 @@
 
 #include <iostream>
 #include "InsertionSort.h"
+#include "MergeSort.h"
 
 int main()
 {
     std::vector<int> input {5, 4, 8, 9, 6};
 
-    std::vector<int> output = InsertionSort(input);
+    std::vector<int> output = MergeSort(input);
 
     for (int i = 0; i < output.size(); i++) {
         std::cout << output[i] << std::endl;
