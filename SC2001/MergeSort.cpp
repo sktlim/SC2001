@@ -7,7 +7,7 @@ std::vector<int> MergeSort(std::vector<int> input)
     std::vector<int> output_R {};
 
     if (input.end() - 1 - input.begin() <= 0)
-        return output_L;
+        return input;
     else if (input.end() - 1 - input.begin() > 1) {
         std::vector<int> newInput_L(input.begin(), mid);
         std::vector<int> newInput_R(mid, input.end());
