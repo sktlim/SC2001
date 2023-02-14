@@ -1,6 +1,6 @@
 #include "MergeSort.h"
 
-std::vector<int> MergeSort(std::vector<int> input)
+std::vector<int> MergeSort(std::vector<int> input, int& count)
 {
     auto mid = input.begin() + input.size() / 2;
     std::vector<int> output_L {};
@@ -11,8 +11,8 @@ std::vector<int> MergeSort(std::vector<int> input)
     else if (input.end() - 1 - input.begin() > 1) {
         std::vector<int> newInput_L(input.begin(), mid);
         std::vector<int> newInput_R(mid, input.end());
-        output_L = MergeSort(newInput_L);
-        output_R = MergeSort(newInput_R);
+        output_L = MergeSort(newInput_L, count);
+        output_R = MergeSort(newInput_R, count);
     }
     else if (input.end() - 1 - input.begin() == 1) {
         output_L.push_back(*input.begin());
@@ -20,6 +20,7 @@ std::vector<int> MergeSort(std::vector<int> input)
     }
 
     std::vector<int> output = Merge(output_L, output_R);
+	count++;
     return output;
 }
 

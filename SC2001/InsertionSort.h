@@ -1,5 +1,5 @@
 #pragma once
 #include <vector>
 
-std::vector<int> InsertionSort(std::vector<int> input);
+std::vector<int> InsertionSort(std::vector<int> input, int& count);
 
