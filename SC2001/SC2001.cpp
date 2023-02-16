@@ -21,31 +21,87 @@ int main()
 
 
     //std::vector<int> vec = generateArray(5000);
+
+    //-------------------------------------------------------------------------------------------------------------------------
+    // Part ci)
+    //std::vector<double> comparison_count;
+    //std::vector<int> nsize {1000, 5000, 10000, 50000, 100000, 500000, 1'000'000, 5'000'000, 10'000'000}; //varying n size
+    //int count = 0;
+
+    //for (int i = 0; i < nsize.size() ; i++) {
+    //    std::vector<int> vec = generateArray(nsize[i]);
+    //    std::vector<int> output = HybridSort(vec, 13, count);
+    ////    std::cout << "S/N: " << i << " Comparison Count: " << count << std::endl;
+    //    std::cout << count << std::endl;
+    //    comparison_count.push_back(count);
+    //    count = 0;
+    //    output.clear();
+    //}
+
+    //std::vector<double> x = linspace(0, 10);
+    //plot(x, comparison_count, "-o");
+    //show();
+
+    //-------------------------------------------------------------------------------------------------------------------------
+    // Part cii)
     std::vector<double> comparison_count;
-    std::vector<int> nsize {1000, 5000, 10000, 50000, 100000, 500000, 1000000, 5000000, 10000000};
+    std::vector<double> time_count;
+
+    std::vector<int> vec = generateArray(10000000);
     int count = 0;
 
-    for (int i = 0; i < nsize.size(); i++) {
-        std::vector<int> vec = generateArray(nsize[i]);
-        std::vector<int> output = MergeSort(vec, count);
-        std::cout << "S/N: " << i << " Comparison Count: " << count << std::endl;
-        comparison_count.push_back(count);
+    for (int i = 2; i < 23; i++) {
+        auto t1 = high_resolution_clock::now();
+        std::vector<int> output = HybridSort(vec, i, count);
+        auto t2 = high_resolution_clock::now();
+
+        duration<double, std::milli> hybrid_double = t2 - t1;
+
+        std::cout << count << std::endl;
+        time_count.push_back(hybrid_double.count());
         count = 0;
     }
 
-    std::cout << " " << std::endl;
-
-    for (auto i : comparison_count) {
+    for (auto i : time_count) {
         std::cout << i << std::endl;
     }
 
-    std::vector<double> x = linspace(0, 10000005);
-    plot(x, comparison_count, "-o");
-    show();
+    //std::vector<double> x = linspace(0, 1000);
+    //plot(x, comparison_count, "-o");
+    //show();
 
-    /*for (auto i : time_taken) {
-        std::cout << i << std::endl;
-    }*/
+    //-------------------------------------------------------------------------------------------------------------------------
+    // Part ciii)
+
+
+
+    //-------------------------------------------------------------------------------------------------------------------------
+    // Part d)
+    //std::vector<double> comparison_count_merge;
+    //std::vector<double> comparison_count_hybrid;
+    //int count_merge = 0;
+    //int count_hybrid = 0;
+
+    //std::vector<int> vec = generateArray(10'000'000);
+
+    //auto t1 = high_resolution_clock::now();
+    //std::vector<int> output_1 = HybridSort(vec, 4, count_hybrid);
+    //auto t2 = high_resolution_clock::now();
+
+    //auto t3 = high_resolution_clock::now();
+    //std::vector<int> output_2 = MergeSort(vec, count_merge);
+    //auto t4 = high_resolution_clock::now();
+
+    //duration<double, std::milli> hybrid_double = t2 - t1;
+    //duration<double, std::milli> merge_double = t4 - t3;
+
+    //std::cout << "MergeSort - Comparison Count: " << count_merge << std::endl;
+    //std::cout << "HybridSort - Comparison Count: " << count_hybrid << std::endl;
+
+    //std::cout << "MergeSort - Runtime: " << merge_double.count() << "ms" << std::endl;
+    //std::cout << "HybridSort - Runtime: " << hybrid_double.count() << "ms" << std::endl;
+
+    //-------------------------------------------------------------------------------------------------------------------------
 
     return 0;
 }
